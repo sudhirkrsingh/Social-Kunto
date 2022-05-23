@@ -1,5 +1,6 @@
 package com.mega.socialkunto.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.ArrayRes;
@@ -10,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mega.socialkunto.Adapter.DashboardAdapter;
 import com.mega.socialkunto.Adapter.StoryAdapter;
 import com.mega.socialkunto.Model.DashboardModel;
 import com.mega.socialkunto.Model.StoryModel;
+import com.mega.socialkunto.NotificationActivity;
 import com.mega.socialkunto.R;
 
 import java.text.SimpleDateFormat;
@@ -29,6 +32,7 @@ public class HomeFragment extends Fragment {
     RecyclerView storyRv,dashboardRV;
     ArrayList<StoryModel> list;
     ArrayList<DashboardModel> dashboardList;
+    ImageView notification;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -42,6 +46,17 @@ public class HomeFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_home, container, false);
 
         heading=view.findViewById(R.id.heading);
+        notification=view.findViewById(R.id.notification);
+
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getActivity(), NotificationActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         Calendar c = Calendar.getInstance();

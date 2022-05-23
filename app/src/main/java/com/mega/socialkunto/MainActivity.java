@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
@@ -13,23 +14,27 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.mega.socialkunto.Fragment.AddFragment;
 import com.mega.socialkunto.Fragment.HomeFragment;
-import com.mega.socialkunto.Fragment.NotificationFragment;
 import com.mega.socialkunto.Fragment.ProfileFragment;
 import com.mega.socialkunto.Fragment.SearchFragment;
+import com.mega.socialkunto.Fragment.WorkOutsFragment;
 import com.mega.socialkunto.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
 
+
         Window window = getWindow();
         window.setBackgroundDrawableResource(R.drawable.gradient_toolbar);
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -41,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.notification:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,new NotificationFragment()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,new WorkOutsFragment()).commit();
                         return true;
 
                     case R.id.add:
@@ -62,5 +67,11 @@ public class MainActivity extends AppCompatActivity {
         });
         bottomNavigationView.setSelectedItemId(R.id.home);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item,menu);
+        return true;
     }
 }
